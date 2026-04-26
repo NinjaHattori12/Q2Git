@@ -1,0 +1,197 @@
+flask-git-project/
+│
+├── app.py
+├── requirements.txt
+├── .gitignore
+│
+└── templates/
+    └── index.html        ← CREATE IT HERE
+
+
+Part 1 — Initialize Repository and Push Flask Project
+Step 1.1: Create the Flask project (run in Terminal / VS Code terminal)
+mkdir flask-git-project
+cd flask-git-project
+
+Create all the files app1PY, INDEX1.html, req, ignore
+
+
+
+Step 1.2: Initialize Git repository (run in Terminal, inside project folder)
+git init
+git config --global user.name "Your Name"
+git config --global user.email "your@email.com"
+
+
+Step 1.3: Stage and commit files (Terminal, same folder)
+git add .
+git status           # verify what's staged
+git commit -m "Initial commit: Add Flask project with home and about routes"
+
+Step 1.4: Push to GitHub
+First, on GitHub website: Go to github.com → click New repository → name it flask-git-project → do not initialize with README → click Create repository.
+
+Then, back in Terminal:
+git remote add origin https://github.com/YOUR_USERNAME/flask-git-project.git
+git branch -M main
+git push -u origin main
+
+
+
+Part 2 — Create and Merge Branches
+
+Step 2.1: Create a feature branch (Terminal)
+git checkout -b feature/login
+# or equivalently:
+# git branch feature/login
+# git checkout feature/login
+
+
+Step 2.2 — (Detailed Walkthrough) Add code on the branch
+1. First, check you're on the right branch (Terminal)
+git branch  //NOT NECESSARY
+You should see:
+* feature/login
+  main
+
+2. Edit app.py add the login route means copy paste APPwithLogin txt code
+
+3. Now go to Terminal and run these commands one by one
+git add app.py
+git commit -m "Add login route on feature/login branch"
+git push origin feature/login
+
+
+Step 2.3: Create another branch to demonstrate multiple branches
+
+git checkout main              # go back to main first
+git checkout -b feature/contact
+
+# Add a contact route in app.py means copy paste APPwithCONTACT txt
+
+# Then commit:
+git add app.py
+git commit -m "Add contact route on feature/contact branch"
+git push origin feature/contact
+
+Then merge conflict error will come
+
+Delete all the conflict markers (<<<<<<<, =======, >>>>>>>) and keep the code you want. 
+Save with Ctrl+S
+
+Back in Terminal, run these commands:
+git add app.py
+git commit -m "Resolve merge conflict in app.py"
+git push origin main
+
+git branch -a         # lists local and remote branches
+
+
+Part 3 — View Commit History and Revert Changes
+
+Step 3.1: View commit history (Terminal)
+# Compact one-line view
+git log --oneline
+
+# Detailed view with dates and author
+git log //NOT NECESSARY
+
+# Visual graph of branches
+git log --oneline --graph --all
+
+# Show changes in each commit
+git log -p //NOT NECESSARY
+
+
+Step 3.2: See what changed between commits (Terminal)
+git diff HEAD~1 HEAD       # compare last two commits
+git show a1b2c3d           # show a specific commit's changes
+git status                 # current working tree status
+
+
+git revert b0fbc51 //contact route id
+
+
+This will open a text editor in the terminal automatically. Just press:
+Ctrl+X to exit and confirm
+
+If it opens Vim (you see ~ symbols), press:
+:wq
+then hit Enter
+
+BUT WHEN WE DO git revert conflicts occur
+so edit app.py means copy paste APPafterREVERT txt
+
+Save with Ctrl+S
+Back in Terminal run:
+
+git add app.py
+git revert --continue
+
+This will open a text editor — press Ctrl+X to confirm (or type :wq + Enter if Vim opens).
+
+
+Then push:
+git push origin main
+
+IF 2LOGIN ROUTE COMES THEN DELETE1 AND DELETE CONTACT ROUTE ALSO
+AFTER THAT DO THIS:
+
+git add app.py
+git revert --continue
+Press Ctrl+X to exit the editor (or :wq + Enter for Vim).
+Press Escape key first, then type exactly:
+:wq
+then hit Enter
+
+git push origin main
+
+
+Then run this to see your full commit history with the revert:
+git log --oneline
+
+
+Part 4 Collaboration
+
+Step 4.1 — 
+Clone in a different folder (open a NEW terminal window):
+cd C:\Users\PRANJAL MANJAREKAR\Desktop
+git clone https://github.com/Pranjal050905/flask-git-project.git collab-copy
+cd collab-copy
+
+2. Then create branch:
+git checkout -b feature/navbar
+
+3. Open VSCODE in collab-copy folder
+Then edit in collab folder templates/index.html (add navbar in VS Code) → Save Ctrl+S means copy paste INDEXwithNAV
+
+4. Then back in Terminal run:
+git add .
+git commit -m "Add navbar to homepage"
+git push origin feature/navbar
+
+Remember — edit files in collab-cop folder, NOT in flask-git-project folder! 🚀
+
+
+Now Step 4.3 — Create Pull Request on GitHub website:
+
+Go to github.com/Pranjal050905/flask-git-project
+You will see a yellow banner saying "feature/navbar had recent pushes" → click "Compare & pull request"
+Add title: Add navbar to homepage
+Click "Create pull request"
+Click "Merge pull request"
+Click "Confirm merge"
+
+
+Then Step 4.4 — Go back to your ORIGINAL terminal (flask-git-project folder):
+cd C:\Users\PRANJAL MANJAREKAR\flask-git-project
+git pull origin main
+git log --oneline
+
+
+
+
+
+
+
+
