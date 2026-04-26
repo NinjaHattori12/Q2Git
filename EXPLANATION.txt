@@ -1,0 +1,109 @@
+Part 1 — Initialize Repository and Push Flask Project
+
+What I did:
+
+I created a Flask web project with app.py, templates/index.html, requirements.txt and .gitignore files. Then I initialized a local Git repository using git init, staged all files using git add . and saved the first snapshot using git commit. Finally I connected it to GitHub using git remote add origin and uploaded using git push origin main.
+
+Commands used:
+git init
+git add .
+git commit -m "Initial commit: Add Flask project"
+git remote add origin https://github.com/Pranjal050905/flask-git-project.git
+git push -u origin main
+
+Part 2 — Create and Merge Branches
+
+What I did:
+
+I created two separate feature branches — feature/login and feature/contact — to simulate real-world parallel development. Each branch had its own changes to app.py. I then merged both branches back into main. During merging, a merge conflict occurred because both branches edited the same file. I resolved it manually by editing app.py, removing conflict markers and keeping the correct code.
+
+git checkout -b feature/login      # create and switch to branch
+git add app.py
+git commit -m "Add login route"
+git push origin feature/login
+
+git checkout main
+git merge feature/login            # merge branch into main
+git merge feature/contact          # conflict occurred here
+# resolved conflict manually in VS Code
+git add app.py
+git commit -m "Resolve merge conflict in app.py"
+git push origin main
+
+
+Part 3 — View Commit History and Revert Changes
+
+What I did:
+
+I used git log to view the complete history of all commits with author name, date and message. I used git log --oneline for a compact view. I used git diff to see exact line-by-line changes between commits. Then I used git revert to safely undo a previous commit without deleting history — it creates a new commit that reverses the changes.
+
+Commands used:
+git log --oneline         # compact history
+git log                   # detailed history
+git diff HEAD~1 HEAD      # compare last two commits
+git show d339f07          # show specific commit details
+git revert b0fbc51        # safely undo a commit
+git push origin main
+
+
+Key concept: git revert is safe because it does not delete commits — it adds a new "undo" commit. This is important in team projects where history must be preserved.
+
+
+Part 4 — Collaboration Workflow
+
+What I did:
+
+I simulated a collaboration workflow by cloning the repository into a separate folder called collab-cop on my Desktop — this represents a second developer's machine. The collaborator created a new branch feature/navbar, edited index.html to add a navigation bar, committed the changes and pushed the branch to GitHub. Then on GitHub I opened a Pull Request, reviewed the changes and merged it. Finally, back in the original project folder I ran git pull origin main to sync the merged changes — exactly how real team collaboration works.
+
+Commands used:
+
+
+# Collaborator side (collab-cop folder)
+git clone https://github.com/Pranjal050905/flask-git-project.git collab-cop
+git checkout -b feature/navbar
+git add .
+git commit -m "Add navbar to homepage"
+git push origin feature/navbar
+
+# Original developer side (flask-git-project folder)
+git pull origin main
+git log --oneline
+
+Key concept: Pull Requests allow team members to review each other's code before merging into main branch. This ensures code quality in real projects.
+
+
+
+
+LINK:
+
+https://claude.ai/share/ed40eb09-3872-4042-af10-8720a6bed0c8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
